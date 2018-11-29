@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import { View, Text } from 'react-native';
+import { Icon} from 'react-native-elements';
 import { connect } from 'react-redux';
+import { createStackNavigator, createAppContainer} from 'react-navigation';
 import { fetchUser, fetchBooks, fetchMessages } from '../redux/ActionCreators';
+import HomeScreen from './Home';
 
 const MapStateToProps = state => ({
     user: state.user,
@@ -15,6 +17,25 @@ const MapDispatchToProps = dispatch => ({
     fetchMessages: (userId) => dispatch(fetchMessages(userId))
 })
 
+const NavStack = createStackNavigator({
+    Home: {
+        screen: HomeScreen
+    }  
+},{
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: '#A64AC9',
+        },
+        headerTintColor: 'white',
+        headerLeft: <Icon name="home" size={24}
+        iconStyle={{ color: 'white', marginLeft: 30 }} 
+        />    
+    }
+});
+
+const NavContainer = createAppContainer(NavStack);
+
 class Main extends Component{
 
     componentDidMount(){
@@ -26,12 +47,8 @@ class Main extends Component{
     render(){
         return(
 
-            <View>
-                <Text>{ !this.props.user.loading ? this.props.user.user.acc.username : 'Not ready'}</Text>
-                <Text>{ !this.props.books.loading ? "Books user id is: " + this.props.books.booklist.userId : 'Not ready' }</Text>
-                <Text>{ !this.props.messages.loading ? this.props.messages.messages[0].body : 'Not ready'}</Text>
-            </View>
-    
+            <NavContainer />
+            
         );
     }
 
