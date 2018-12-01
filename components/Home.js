@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Text} from 'react-native';
-import { Card } from 'react-native-elements';
+import { ScrollView, Text, TouchableHighlight} from 'react-native';
+import { Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import styles from '../shared/stylesheet';
 
 
 const MapStateToProps = state => ({
@@ -16,36 +17,44 @@ class HomeScreen extends Component{
     static navigationOptions = {
         title: 'Home'
     }
+    
 
     render(){
         
         return (
 
     
-            <ScrollView style={{backgroundColor: '#fccd04'}}>
+            <ScrollView style={styles.background}>
                 <Text style={styles.intro}> Welcome to the Book Club </Text>
-                <Card
-                    title='Your Books'
-                    titleStyle={styles.title}
-                    wrapperStyle={{padding:0}}
-                    containerStyle={styles.container}
-                    image={{uri: baseUrl + 'img/books.jpg'}} 
-                />
 
-
-                <Card
-                    title='Your Profile'
-                    titleStyle={styles.title}
-                    wrapperStyle={{padding:0}}
-                    containerStyle={styles.container}
-                    image={{uri: baseUrl + 'img/profile.jpg'}}/>
-
-                <Card
-                    title='Your Messages'
-                    titleStyle={styles.title}
-                    wrapperStyle={{padding:0}}
-                    containerStyle={styles.container}
-                    image={{uri: baseUrl + 'img/mail.jpg'}} />
+                <TouchableHighlight  onPress = {() => this.props.navigation.navigate("Books")}>
+                    <Card
+                        title='Your Books'
+                        titleStyle={styles.title}
+                        wrapperStyle={{padding:0}}
+                        containerStyle={styles.container}
+                        image={{uri: baseUrl + 'img/books.jpg'}} 
+                       
+                    />
+                </TouchableHighlight>
+                <TouchableHighlight onPress = {() => this.props.navigation.navigate("Messages")}>
+                    <Card
+                        title='Your Messages'
+                        titleStyle={styles.title}
+                        wrapperStyle={{padding:0}}
+                        containerStyle={styles.container}
+                        image={{uri: baseUrl + 'img/mail.jpg'}}
+                        />
+                </TouchableHighlight>
+                <TouchableHighlight onPress = {() => this.props.navigation.navigate("Profile")}>
+                    <Card
+                        title='Your Profile'
+                        titleStyle={styles.title}
+                        wrapperStyle={{padding:0}}
+                        containerStyle={styles.container}
+                        image={{uri: baseUrl + 'img/profile.jpg'}}
+                        />
+                </TouchableHighlight>
                 
             </ScrollView>
             
@@ -54,24 +63,6 @@ class HomeScreen extends Component{
 }
 
 
-const styles = StyleSheet.create({
-    intro: {
-        fontWeight: 'bold', 
-        fontSize: 24, 
-        textAlign: 'center', 
-        marginTop: 15,
-        marginBottom: 15
-    },
-    title: {
-        backgroundColor: '#A64AC9', 
-        padding: 15, 
-        marginTop: 0, 
-        marginBottom:0, 
-        color: 'white'
-    },
-    container: {
-        marginBottom: 20
-    }
-})
+
 
 export default connect(MapStateToProps)(HomeScreen);

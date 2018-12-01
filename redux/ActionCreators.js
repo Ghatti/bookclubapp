@@ -66,7 +66,7 @@ export const fetchBooks = (userId) => dispatch => {
     )
     .then(response => response.json())
     .then(booklists => dispatch( initBooks(booklists[userId])))
-    .catch(error => dispatch(bookFailed(error)));
+    .catch(error => dispatch(booksFailed(error)));
 } 
 
 export const initBooks = (booklist) => {

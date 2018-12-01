@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { Icon} from 'react-native-elements';
 import { connect } from 'react-redux';
-import { createStackNavigator, createAppContainer} from 'react-navigation';
 import { fetchUser, fetchBooks, fetchMessages } from '../redux/ActionCreators';
-import HomeScreen from './Home';
+import NavContainer from './Navigators';
+import { View, Text, FlatList } from 'react-native';
 
 const MapStateToProps = state => ({
     user: state.user,
@@ -17,24 +17,7 @@ const MapDispatchToProps = dispatch => ({
     fetchMessages: (userId) => dispatch(fetchMessages(userId))
 })
 
-const NavStack = createStackNavigator({
-    Home: {
-        screen: HomeScreen
-    }  
-},{
-    initialRouteName: 'Home',
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: '#A64AC9',
-        },
-        headerTintColor: 'white',
-        headerLeft: <Icon name="home" size={24}
-        iconStyle={{ color: 'white', marginLeft: 30 }} 
-        />    
-    }
-});
 
-const NavContainer = createAppContainer(NavStack);
 
 class Main extends Component{
 
@@ -48,7 +31,7 @@ class Main extends Component{
         return(
 
             <NavContainer />
-            
+
         );
     }
 
