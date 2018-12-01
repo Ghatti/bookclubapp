@@ -78,15 +78,17 @@ const DrawerNav = createDrawerNavigator({
     }
 },
 {
+    initialRouteName: 'Books',
     drawerBackgroundColor: '#A64AC9',
-    
     contentOptions: {
         activeTintColor: '#fccd04',
         inactiveTintColor: 'white'
     }
    
-}
-);
+});
+
+
+
 
 const NavContainer = createAppContainer(DrawerNav);
 

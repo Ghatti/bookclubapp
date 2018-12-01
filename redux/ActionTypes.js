@@ -9,3 +9,6 @@ export const BOOKS_FAILED = 'BOOKS_FAILED';
 export const INIT_MESSAGES = 'INIT_MESSAGES';
 export const MESSAGES_FAILED = 'MESSAGES_FAILED';
 export const MESSAGES_LOADING = 'MESSAGES_LOADING';
+
+export const REMOVE_BOOK = 'REMOVE_BOOK';
+export const ADD_BOOK = 'ADD_BOOK';

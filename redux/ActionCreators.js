@@ -121,3 +121,21 @@ export const messagesFailed = (error) => {
         payload: error
     }
 }
+
+export const removeBook = (list, bookId) => {
+    return {
+        type: ActionTypes.REMOVE_BOOK,
+        payload: {
+            list: list,
+            bookId:bookId
+        }
+    }
+}
+
+export const addBook = (list, bookData) => {
+    return {
+        type: ActionTypes.ADD_BOOK,
+        list: list,
+        bookData: bookData
+    }
+}
