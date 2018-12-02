@@ -3,7 +3,7 @@ import { Card, Icon } from 'react-native-elements';
 import { StyleSheet, ScrollView ,View, Text, FlatList, Image, Modal, Button } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../shared/stylesheet'; 
-import { removeBook } from '../redux/ActionCreators';
+import { removeBook, addBook } from '../redux/ActionCreators';
 import { baseUrl } from '../shared/baseUrl';
 import AddBookModal from './AddBookModal';
 
@@ -13,7 +13,8 @@ const MapStateToProps = state => ({
 
 const MapDispatchToProps = dispatch => ({
 
-    removeBook: (list, bookId) => dispatch(removeBook(list, bookId))
+    removeBook: (list, bookId) => dispatch(removeBook(list, bookId)),
+    addBook: (list, bookData) => dispatch(addBook(list, bookData))
 });
 
 class BooksComponent extends Component{
@@ -79,15 +80,17 @@ class BooksComponent extends Component{
                 <ScrollView style={styles.background}>
 
                     <AddBookModal
-                        visible={this.state.modalVisible}
-                        toggleModal={() => this.toggleModal()}
+                        modalVisible={this.state.modalVisible}
+                        toggleModal={this.toggleModal}
+                        list={this.state.list}
+                        addBook={this.props.addBook}
                     />
 
                     <View style={localStyles.header}>
                         <Text style={localStyles.headerTitle}>Your Books</Text>
                         <Button 
                             style={{alignSelf: 'center'}}
-                            onPress={() => console.log(this.state.list)}
+                            onPress={this.toggleModal}
                             title='Add Book'
                             color='#428bca'
 

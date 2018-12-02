@@ -132,10 +132,14 @@ export const removeBook = (list, bookId) => {
     }
 }
 
-export const addBook = (list, bookData) => {
+export const addBook = (bookData) => {
+    
     return {
         type: ActionTypes.ADD_BOOK,
-        list: list,
-        bookData: bookData
+        payload: {
+            title: bookData.title,
+            author: bookData.author,
+            list: bookData.list
+        }
     }
 }

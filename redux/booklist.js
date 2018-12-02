@@ -14,7 +14,15 @@ export const BOOKS = ( state = {loading: true, errMess: null, my: [], wanted: []
         case ActionTypes.REMOVE_BOOK:
             return {...state, [action.payload.list]: state[action.payload.list].filter((book) => book.id !== action.payload.bookId) };
         case ActionTypes.ADD_BOOK:
-            return {...state, [action.payload.list]: state[action.payload.list].concat({...action.payload.bookData, id: action.payload.list.length})}
+
+            return {...state, 
+                [action.payload.list]: state[action.payload.list].concat({
+                    title: action.payload.title,
+                    author: action.payload.author,
+                    rating: '5.0',
+                    cover: '/img/cover.png',
+                    id: state[action.payload.list].length
+            })}
         default:
             return state;
     }
