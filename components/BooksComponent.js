@@ -13,8 +13,9 @@ import AddBookModal from './AddBookModal';
     
         * Add gesture responsiveness for book cards (left swipe to remove a book)
         * Add gesture responsiveness to the local header, so navigation becomes possible by swiping
-        * Possibly rework navigation structure - Two bars at the top are lame and solution for tabs seems improvised
+        * Possibly rework navigation structure - Two bars at the top are lame, solution for tabs seems too improvised and transition to no addBookButton is terrible
         * Add animations so transitions feel smother
+
         
     */
 
@@ -36,6 +37,12 @@ function LocalHeader(props){
 
     let header = props.list === 0 ? 'Your Books' : props.list === 1 ? 'Wanted Books' : 'Your Offers';
 
+    let addBookButton = <Button 
+                            style={{alignSelf: 'center'}}
+                            onPress={props.toggleModal}
+                            title='Add Book'
+                            color='#428bca'
+                        />;
     return (
     
         <View style={localStyles.header}>
@@ -62,12 +69,7 @@ function LocalHeader(props){
                 />
             </View>
 
-            <Button 
-                style={{alignSelf: 'center'}}
-                onPress={props.toggleModal}
-                title='Add Book'
-                color='#428bca'
-            />
+            {props.list !== 2? addBookButton : null}
 
         </View>
     );

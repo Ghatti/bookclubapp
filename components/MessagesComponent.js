@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
+import { styles } from '../shared/stylesheet';
+
+const MapStateToProps = state => ({
+
+    messages: state.messages
+});
 
 class MessagesComponent extends Component{
 
@@ -9,7 +16,7 @@ class MessagesComponent extends Component{
 
     render(){
         return (
-            <View>
+            <View style={styles.background}>
                 <Text>MessagesComponent</Text>
             </View>
         );
@@ -17,4 +24,4 @@ class MessagesComponent extends Component{
 
 }
 
-export default MessagesComponent;
+export default connect(MapStateToProps)(MessagesComponent);
