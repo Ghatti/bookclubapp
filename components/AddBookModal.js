@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, View, Button } from 'react-native';
 import { FormInput, FormLabel } from 'react-native-elements';
-import styles from '../shared/stylesheet';
 
 class AddBookModal extends Component{
 
