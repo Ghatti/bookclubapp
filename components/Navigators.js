@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon } from 'react-native-elements';
-import { createStackNavigator, createAppContainer, createDrawerNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer, createDrawerNavigator, createBottomTabNavigator} from 'react-navigation';
 import HomeScreen from './Home';
 import BooksComponent from './BooksComponent';
 import MessagesComponent from './MessagesComponent';
@@ -48,6 +48,10 @@ const MessagesNavigator = createStackNavigator({
     defaultNavigationOptions: defaultNavigationOptions
 });
 
+/* This is code that sets the drawer navigator.
+The drawer navigator is the only thing rendered on main. 
+The router takes care of picking the right thing for rendering.*/
+
 const DrawerNav = createDrawerNavigator({
     Home: {screen: HomeNavigator,
         navigationOptions: {
@@ -86,9 +90,6 @@ const DrawerNav = createDrawerNavigator({
     }
    
 });
-
-
-
 
 const NavContainer = createAppContainer(DrawerNav);
 
