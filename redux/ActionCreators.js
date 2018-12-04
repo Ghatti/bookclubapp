@@ -143,3 +143,13 @@ export const addBook = (bookData) => {
         }
     }
 }
+
+export const deleteMessage = (mesId) => {
+    console.log(mesId);
+    return {
+        type: ActionTypes.DELETE_MESSAGE,
+        payload: {
+            mesId: mesId
+        }
+    }
+}

@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     },
     container: {
         marginBottom: 20,
-        borderColor: '#A64AC9'
+        borderColor: '#A64AC9',
+        backgroundColor: '#E8AAFF'
     }
 })
 

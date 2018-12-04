@@ -10,6 +10,8 @@ export const MESSAGE_LIST = (state = {loading: true, errMess: null, messages: []
             return {loading: true, errMess: null, messages: []};
         case ActionTypes.INIT_MESSAGES:
             return {loading: false, errMess: null, messages: action.payload};
+        case ActionTypes.DELETE_MESSAGE:
+            return {...state, messages: state.messages.filter((message) => { return message.id !== action.payload.mesId})}
         default:
             return state;
     }

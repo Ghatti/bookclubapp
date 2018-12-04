@@ -13,7 +13,8 @@ import AddBookModal from './AddBookModal';
     
         * Add gesture responsiveness for book cards (left swipe to remove a book)
         * Add gesture responsiveness to the local header, so navigation becomes possible by swiping
-        * Possibly rework navigation structure - Two bars at the top are lame, solution for tabs seems too improvised and transition to no addBookButton is terrible
+        * Possibly rework navigation structure - Two bars at the top are lame, solution for tabs seems too improvised and transition to no addBookButton is terrible.
+        * 03/12 Suggestion: Use button group from react native elements to build a better experience 
         * Add animations so transitions feel smother
 
         
@@ -100,7 +101,7 @@ class BooksComponent extends Component{
         this.setState({modalVisible: !this.state.modalVisible});
     }
 
-    /* User this.state.list as index to retrieve a list type from the OPTIONS list.
+    /* Uses this.state.list as index to retrieve a list type from the OPTIONS list.
     This function should be used anytime you want to have access to the list (to update or retrieve data*/
 
     getList = () => {
