@@ -6,6 +6,9 @@ import MessagesCard from './MessagesCard';
 import MessagesModal from './MessagesModal';
 import { deleteMessage } from '../redux/ActionCreators';
 
+
+/*TODO: 99,99% certain this feature should be scrapped*/
+
 const MapStateToProps = state => ({
 
     messages: state.messages
