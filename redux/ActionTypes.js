@@ -14,3 +14,5 @@ export const REMOVE_BOOK = 'REMOVE_BOOK';
 export const ADD_BOOK = 'ADD_BOOK';
 
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
+
+export const SUBMIT_FORM = 'SUBMIT_FORM';

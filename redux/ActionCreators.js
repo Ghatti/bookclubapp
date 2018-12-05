@@ -145,11 +145,22 @@ export const addBook = (bookData) => {
 }
 
 export const deleteMessage = (mesId) => {
-    console.log(mesId);
+
     return {
         type: ActionTypes.DELETE_MESSAGE,
         payload: {
             mesId: mesId
+        }
+    }
+}
+
+export const submitForm = (form, formData) => {
+
+    return {
+        type: ActionTypes.SUBMIT_FORM,
+        payload: {
+            form: form,
+            formData: formData
         }
     }
 }

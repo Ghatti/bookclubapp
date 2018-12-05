@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Button } from 'react-native';
-import { ButtonGroup, FormInput, FormLabel } from 'react-native-elements';
+import { View, Button } from 'react-native';
+import { AccCard, PersCard,BookCard } from './FormCards';
+import styles from '../shared/stylesheet';
+import { submitForm } from '../redux/ActionCreators';
 
-const mapStateToProps = state => ({
+/* Todo: fix layout */
+
+const MapStateToProps = state => ({
     user: state.user
+})
+
+const MapDispatchToProps = dispatch => ({
+    submitForm: (form, formData) => dispatch(submitForm(form, formData))
 })
 
 class ProfileComponent extends Component{
@@ -12,7 +20,26 @@ class ProfileComponent extends Component{
     constructor(props){
         super(props);
         this.state = {
-            form: 'acc'
+            form: 'pers',
+            acc: {
+                email: '',
+                pass: '',
+                pic: ''
+            },
+            pers: {
+                name: '',
+                age: '',
+                country: '',
+                city: '',
+                prof: '',
+            },
+            books: {
+                fav: '',
+                author: '',
+                genre: '',
+                quote: ''
+
+            }
         }
     }
 
@@ -20,33 +47,73 @@ class ProfileComponent extends Component{
         title: 'Profile'
     }
 
-    render(){
-        return (
-            <View>
-
-                <View>
-                    <Button 
-                        title='Account Info'
-                        onPress={() => console.log('acc')}/>
-                    <Button 
-                        title='Personal'
-                        onPress={()=> console.log('pers')}
-                    />
-                    <Button 
-                        title='Book Preferences'
-                        onPress={() => console.log('bookpref')}/>
-                </View>
-
-                <View>
-                    <Text>Acc Card</Text>
-                    <Text>Pers Card</Text>
-                    <Text>Book Card</Text>
-
-                </View>
-            </View>
-        );
+    setForm = (form) => {
+        this.setState({form: form});
     }
 
+    handleChange = (form) => (field) => (value) => {
+
+
+        this.setState({
+            [form]: {...this.state[form], [field]: value}
+        });
+    }
+
+    handleSubmit = (form) => (formData) => {
+        this.props.submitForm(form, formData);
+    }
+
+    render(){
+
+        if(this.props.user.loading){
+            return <View />
+        }
+        else{
+            return (
+                <View style={{...styles.background, flex: 1}}>
+
+                    <View>
+                        <Button 
+                            title='Account Info'
+                            onPress={() => this.setForm('acc')}/>
+                        <Button 
+                            title='Personal'
+                            onPress={() => this.setForm('pers')}
+                        />
+                        <Button 
+                            title='Book Preferences'
+                            onPress={() => this.setForm('books')}/>
+                    </View>
+
+                    <View>
+
+                        {
+                            this.state.form === 'acc'?
+                                <AccCard 
+                                    userData={this.props.user.user.acc}
+                                    formState={this.state.acc}
+                                    handleChange={this.handleChange('acc')}
+                                    handleSubmit={this.handleSubmit('acc')}/>
+                            : this.state.form === 'pers' ?
+                                <PersCard 
+                                userData={this.props.user.user.pers}
+                                formState={this.state.pers}
+                                handleChange={this.handleChange('pers')}
+                                handleSubmit={this.handleSubmit('pers')}/>
+                            : <BookCard 
+                                userData={this.props.user.user.books}
+                                formState={this.state.books}
+                                handleChange={this.handleChange('books')}
+                                handleSubmit={this.handleSubmit('books')}/>
+                        
+                        }
+
+                    </View>
+                </View>
+            );
+        }
+    }
 }
 
-export default connect(MapStateToProps)(ProfileComponent);
+
+export default connect(MapStateToProps, MapDispatchToProps)(ProfileComponent);

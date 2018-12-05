@@ -5,7 +5,14 @@ import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import styles from '../shared/stylesheet';
 
+/*
+    GENERAL TODO:
 
+    * Add Store Persistence
+    * Add Gesture Responses
+    * Add Animations
+
+*/
 const MapStateToProps = state => ({
     user: state.user,
     books: state.books,

@@ -82,7 +82,7 @@ const DrawerNav = createDrawerNavigator({
     }
 },
 {
-    initialRouteName: 'Messages',
+    initialRouteName: 'Profile',
     drawerBackgroundColor: '#A64AC9',
     contentOptions: {
         activeTintColor: '#fccd04',
