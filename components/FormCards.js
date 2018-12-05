@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, Button} from 'react-native';
+import { ScrollView, View, Text, Button, StyleSheet} from 'react-native';
 import { Card, FormLabel, FormInput } from 'react-native-elements';
 import styles from '../shared/stylesheet';
 import { Permissions, ImagePicker } from 'expo';
@@ -43,17 +43,16 @@ export const AccCard = (props) => {
             
             <ScrollView contentContainerStyle={{alignItems: 'center'}}>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Email:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.email}
                         placeholder={props.userData.email}
@@ -62,17 +61,16 @@ export const AccCard = (props) => {
                     />
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
+                        
                         labelStyle={{color: 'black'}}
                     >
                         Password:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.pass}
                         placeholder='Password'
@@ -119,17 +117,15 @@ export const PersCard = (props) => {
             
             <ScrollView contentContainerStyle={{alignItems: 'center'}}>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Name:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.name}
                         placeholder={props.userData.name}
@@ -138,17 +134,15 @@ export const PersCard = (props) => {
                     />
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Age:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.age}
                         placeholder={props.userData.age}
@@ -157,17 +151,15 @@ export const PersCard = (props) => {
                     />
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Country:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.country}
                         placeholder={props.userData.country}
@@ -177,17 +169,15 @@ export const PersCard = (props) => {
                 </View>
                
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         City:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.city}
                         placeholder={props.userData.city}
@@ -196,17 +186,15 @@ export const PersCard = (props) => {
                     />
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Profession:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.prof}
                         placeholder={props.userData.prof}
@@ -242,17 +230,15 @@ export const BookCard = (props) => {
             
             <ScrollView contentContainerStyle={{alignItems: 'center'}}>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Favorite Book:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.fav}
                         placeholder={props.userData.fav}
@@ -261,17 +247,15 @@ export const BookCard = (props) => {
                     />
                 </View>
 
-                                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Favorite Author:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.author}
                         placeholder={props.userData.author}
@@ -280,17 +264,15 @@ export const BookCard = (props) => {
                     />
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Favorite Genre:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.genre}
                         placeholder={props.userData.genre}
@@ -299,17 +281,15 @@ export const BookCard = (props) => {
                     />
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={localStyles.formRow}>
                     <FormLabel 
-                        containerStyle={{width: 80}}
                         labelStyle={{color: 'black'}}
                     >
                         Favorite Quote:
                     </FormLabel>
 
                     <FormInput
-                        containerStyle={{width:'60%'}}
-                        inputStyle={{borderBottomColor: "#666633", borderBottomWidth: 1, width: '100%'}}
+                        inputStyle={localStyles.input}
                         placeholderTextColor='#666633'
                         value={props.formState.quote}
                         placeholder={props.userData.quote}
@@ -332,3 +312,15 @@ export const BookCard = (props) => {
         </Card>
     );
 }
+
+const localStyles = StyleSheet.create({
+
+    formRow:{
+        alignItems: 'center'
+    },
+    input: {
+        borderBottomColor: "#666633", 
+        borderBottomWidth: 1, 
+        width: 250
+    }
+});

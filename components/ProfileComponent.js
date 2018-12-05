@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { View, Button } from 'react-native';
+import { ScrollView, View, Button } from 'react-native';
 import { AccCard, PersCard,BookCard } from './FormCards';
 import styles from '../shared/stylesheet';
 import { submitForm } from '../redux/ActionCreators';
-
-/* Todo: fix layout */
 
 const MapStateToProps = state => ({
     user: state.user
@@ -20,7 +18,7 @@ class ProfileComponent extends Component{
     constructor(props){
         super(props);
         this.state = {
-            form: 'pers',
+            form: 'acc',
             acc: {
                 email: '',
                 pass: '',
@@ -51,6 +49,7 @@ class ProfileComponent extends Component{
         this.setState({form: form});
     }
 
+    
     handleChange = (form) => (field) => (value) => {
 
 
@@ -65,24 +64,27 @@ class ProfileComponent extends Component{
 
     render(){
 
+        
+
         if(this.props.user.loading){
             return <View />
         }
         else{
             return (
                 <View style={{...styles.background, flex: 1}}>
+                    <ScrollView>
+                   <View style={{flexDirection: 'row', justifyContent:'space-between', marginTop: 25, marginBottom: 25}}>
 
-                    <View>
                         <Button 
                             title='Account Info'
                             onPress={() => this.setForm('acc')}/>
                         <Button 
                             title='Personal'
-                            onPress={() => this.setForm('pers')}
-                        />
+                            onPress={() => this.setForm('pers')}/>
                         <Button 
                             title='Book Preferences'
                             onPress={() => this.setForm('books')}/>
+                                    
                     </View>
 
                     <View>
@@ -109,6 +111,7 @@ class ProfileComponent extends Component{
                         }
 
                     </View>
+                    </ScrollView>
                 </View>
             );
         }
