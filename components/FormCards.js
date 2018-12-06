@@ -93,7 +93,7 @@ export const AccCard = (props) => {
                     <Button 
                         containerStyle={{width: '50%'}}
                         title='Submit'
-                        onPress={props.handleSubmit}
+                        onPress={() => props.handleSubmit()}
                     />
 
                 </View>
@@ -106,6 +106,8 @@ export const AccCard = (props) => {
 
 
 export const PersCard = (props) => {
+
+
     return(
 
         <Card

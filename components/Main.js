@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import { Icon} from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchUser, fetchBooks, fetchMessages } from '../redux/ActionCreators';
 import NavContainer from './Navigators';
-import { View, Text, FlatList } from 'react-native';
 
 const MapStateToProps = state => ({
     user: state.user,
@@ -22,9 +20,13 @@ const MapDispatchToProps = dispatch => ({
 class Main extends Component{
 
     componentDidMount(){
-        this.props.fetchUser(0);
-        this.props.fetchBooks(0);
-        this.props.fetchMessages(2);
+
+        if(this.props.user.user === {})
+            this.props.fetchUser(0);
+        if(this.props.books.my === [] && this.props.books.wanted === [] && this.props.books.offers === [])
+            this.props.fetchBooks(0);
+        if(this.props.messages.messages === [])
+            this.props.fetchMessages(2);
     }
 
     render(){

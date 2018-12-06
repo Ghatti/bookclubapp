@@ -58,8 +58,9 @@ class ProfileComponent extends Component{
         });
     }
 
-    handleSubmit = (form) => (formData) => {
-        this.props.submitForm(form, formData);
+    handleSubmit = (form) => () => {
+
+        this.props.submitForm(form, this.state[form]);
     }
 
     render(){
