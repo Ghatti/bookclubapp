@@ -11,7 +11,7 @@ import AddBookModal from './AddBookModal';
 /* 
     TODO:
     
-        
+        * fix scrolling (bugged because of the gesture handler)
         * Possibly rework navigation structure - Two bars at the top are lame, solution for tabs seems too improvised and transition to no addBookButton is terrible.
         * 03/12 Suggestion: Use button group from react native elements to build a better experience 
         * Add animations so transitions feel smother
@@ -133,7 +133,9 @@ class BooksComponent extends Component{
 
         const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
             if ( dx < -150 )
-                return true;
+                return 'left';
+            else if (dx > 150)
+                return 'right';
             else
                 return false;
         }
@@ -143,7 +145,11 @@ class BooksComponent extends Component{
                 return true;
             },
             onPanResponderEnd: (e, gestureState) => {
-                if (recognizeDrag(gestureState))
+
+                let drag = recognizeDrag(gestureState);
+                if (drag == 'left')
+                    this.setList(1);
+                else if (drag == 'right')
                     removeAlert();
                 return true;
             }
