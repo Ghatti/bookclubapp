@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Card, Icon } from 'react-native-elements';
-import { StyleSheet, ScrollView ,View, Text, FlatList, Image, Alert, Button } from 'react-native';
+import { StyleSheet, ScrollView ,View, Text, FlatList, Image, Alert, Button, PanResponder } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../shared/stylesheet'; 
 import { removeBook, addBook } from '../redux/ActionCreators';
@@ -11,8 +11,7 @@ import AddBookModal from './AddBookModal';
 /* 
     TODO:
     
-        * Add gesture responsiveness for book cards (left swipe to remove a book)
-        * Add gesture responsiveness to the local header, so navigation becomes possible by swiping
+        
         * Possibly rework navigation structure - Two bars at the top are lame, solution for tabs seems too improvised and transition to no addBookButton is terrible.
         * 03/12 Suggestion: Use button group from react native elements to build a better experience 
         * Add animations so transitions feel smother
@@ -122,6 +121,35 @@ class BooksComponent extends Component{
 
     renderBooks = ({item, index}) => {
 
+        const removeAlert = () => Alert.alert(
+            'Remove Book?',
+            'You are about to remove the book ' + item.title + ". Are you sure?",
+            [
+                {text: 'No', style:'cancel'},
+                {text: 'Yes', onPress:()=> this.props.removeBook(this.getList(), item.id)}
+            ],
+            {cancelable: false}
+        );
+
+        const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
+            if ( dx < -150 )
+                return true;
+            else
+                return false;
+        }
+
+        const panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (e, gestureState) => {
+                return true;
+            },
+            onPanResponderEnd: (e, gestureState) => {
+                if (recognizeDrag(gestureState))
+                    removeAlert();
+                return true;
+            }
+        })
+
+
         return (
             <Card 
                 key={index} 
@@ -129,6 +157,7 @@ class BooksComponent extends Component{
                 titleStyle={styles.title}
                 containerStyle={{backgroundColor: '#E8AAFF', borderColor:"#A64AC9"}}
                 dividerStyle={{width: 0}}
+                {...panResponder.panHandlers}
             >
                 <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                     
@@ -140,16 +169,7 @@ class BooksComponent extends Component{
                         <Button 
 
                             onPress={() => {
-                                Alert.alert(
-                                    'Remove Book?',
-                                    'You are about to remove the book ' + item.title + ". Are you sure?",
-                                    [
-                                        {text: 'No', style:'cancel'},
-                                        {text: 'Yes', onPress:()=> this.props.removeBook(this.getList(), item.id)}
-                                    ],
-                                    {cancelable: false}
-                                );
-                                
+                                removeAlert()
                             }}
                             title='Remove Book'
                             color="#d9534f"
