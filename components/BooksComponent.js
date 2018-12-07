@@ -131,29 +131,7 @@ class BooksComponent extends Component{
             {cancelable: false}
         );
 
-        const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
-            if ( dx < -150 )
-                return 'left';
-            else if (dx > 150)
-                return 'right';
-            else
-                return false;
-        }
-
-        const panResponder = PanResponder.create({
-            onStartShouldSetPanResponder: (e, gestureState) => {
-                return true;
-            },
-            onPanResponderEnd: (e, gestureState) => {
-
-                let drag = recognizeDrag(gestureState);
-                if (drag == 'left')
-                    this.setList(1);
-                else if (drag == 'right')
-                    removeAlert();
-                return true;
-            }
-        })
+        
 
 
         return (
@@ -163,7 +141,6 @@ class BooksComponent extends Component{
                 titleStyle={styles.title}
                 containerStyle={{backgroundColor: '#E8AAFF', borderColor:"#A64AC9"}}
                 dividerStyle={{width: 0}}
-                {...panResponder.panHandlers}
             >
                 <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                     
