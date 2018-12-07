@@ -12,6 +12,7 @@ function MessagesModal(props){
     if(message){
         return(
             <Modal 
+                animationType='slide'
                 visible={props.modalVisible}
                 transparent={false}
                 onRequestClose={props.toggleModal}

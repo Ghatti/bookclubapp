@@ -8,15 +8,6 @@ import { baseUrl } from '../shared/baseUrl';
 import AddBookModal from './AddBookModal';
 import * as Animatable from 'react-native-animatable';
 
-/* 
-    TODO:
-    
-        * Possibly rework navigation structure - Two bars at the top are lame, solution for tabs seems too improvised and transition to no addBookButton is terrible.
-        * 03/12 Suggestion: Use button group from react native elements to build a better experience 
-
-
-        
-    */
 
 const MapStateToProps = state => ({
     books: state.books

@@ -2,11 +2,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Card, Badge } from 'react-native-elements';
+import * as Animatable from 'react-native-animatable';
 
 function MessagesCard(props){
     
 
     return (
+        <Animatable.View animation='slideInLeft'>
         <Card
             key={props.index}
             containerStyle={{backgroundColor: '#E8AAFF', borderColor:"#A64AC9"}}
@@ -36,6 +38,7 @@ function MessagesCard(props){
                 </View>
             </View>
         </Card>
+        </Animatable.View>
     );
 }
 

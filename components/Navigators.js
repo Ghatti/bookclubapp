@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Icon } from 'react-native-elements';
-import { createStackNavigator, createAppContainer, createDrawerNavigator, createBottomTabNavigator} from 'react-navigation';
+import { createStackNavigator, createAppContainer, createDrawerNavigator} from 'react-navigation';
 import HomeScreen from './Home';
 import BooksComponent from './BooksComponent';
 import MessagesComponent from './MessagesComponent';
@@ -82,7 +82,7 @@ const DrawerNav = createDrawerNavigator({
     }
 },
 {
-    initialRouteName: 'Books',
+    initialRouteName: 'Home',
     drawerBackgroundColor: '#A64AC9',
     contentOptions: {
         activeTintColor: '#fccd04',
