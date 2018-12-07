@@ -49,6 +49,19 @@ class ProfileComponent extends Component{
         this.setState({form: form});
     }
 
+    handleNav = (form) => (side) => {
+
+        let newForm;
+
+        if(form == 'acc')
+            newForm = side == 'right' ? 'books' : 'pers';
+        else if (form == 'pers')
+            newForm = side == 'right' ? 'acc' : 'books';
+        else if (form == 'books')
+            newForm = side == 'right' ? 'pers' : 'acc';
+
+        this.setState({form: newForm});
+    }
     
     handleChange = (form) => (field) => (value) => {
 
@@ -64,8 +77,6 @@ class ProfileComponent extends Component{
     }
 
     render(){
-
-        
 
         if(this.props.user.loading){
             return <View />
@@ -96,18 +107,21 @@ class ProfileComponent extends Component{
                                     userData={this.props.user.user.acc}
                                     formState={this.state.acc}
                                     handleChange={this.handleChange('acc')}
-                                    handleSubmit={this.handleSubmit('acc')}/>
+                                    handleSubmit={this.handleSubmit('acc')}
+                                    handleNav={this.handleNav('acc')}/>
                             : this.state.form === 'pers' ?
                                 <PersCard 
                                 userData={this.props.user.user.pers}
                                 formState={this.state.pers}
                                 handleChange={this.handleChange('pers')}
-                                handleSubmit={this.handleSubmit('pers')}/>
+                                handleSubmit={this.handleSubmit('pers')}
+                                handleNav={this.handleNav('pers')}/>
                             : <BookCard 
                                 userData={this.props.user.user.books}
                                 formState={this.state.books}
                                 handleChange={this.handleChange('books')}
-                                handleSubmit={this.handleSubmit('books')}/>
+                                handleSubmit={this.handleSubmit('books')}
+                                handleNav={this.handleNav('books')}/>
                         
                         }
 

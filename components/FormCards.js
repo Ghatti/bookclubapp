@@ -1,8 +1,37 @@
 import React from 'react';
-import { ScrollView, View, Text, Button, StyleSheet} from 'react-native';
+import { ScrollView, View, Button, StyleSheet, PanResponder} from 'react-native';
 import { Card, FormLabel, FormInput } from 'react-native-elements';
 import styles from '../shared/stylesheet';
 import { Permissions, ImagePicker } from 'expo';
+
+
+const setPanResponder = (handleNav) => {
+
+    const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
+        if ( dx < -150 )
+            return 'left';
+        else if (dx > 150)
+            return 'right';
+        else
+            return false;
+    }
+    
+    const panResponder = PanResponder.create({
+        onStartShouldSetPanResponder: (e, gestureState) => {
+            return true;
+        },
+        onPanResponderEnd: (e, gestureState) => {
+    
+            let drag = recognizeDrag(gestureState);
+            if (drag == 'left')
+                handleNav('left');
+            else if (drag == 'right')
+                handleNav('right');
+        }
+    })
+
+    return panResponder;
+}
 
 
 export const AccCard = (props) => {
@@ -32,6 +61,8 @@ export const AccCard = (props) => {
 
     };
 
+    const gestureHandler = setPanResponder(props.handleNav);
+    
     return(
 
         <Card
@@ -39,6 +70,7 @@ export const AccCard = (props) => {
             containerStyle={{backgroundColor: '#E8AAFF', borderColor:"#A64AC9"}}
             titleStyle={styles.title}
             dividerStyle={{width: 0}}
+            {...gestureHandler.panHandlers}
         >
             
             <ScrollView contentContainerStyle={{alignItems: 'center'}}>
@@ -107,6 +139,7 @@ export const AccCard = (props) => {
 
 export const PersCard = (props) => {
 
+    const gestureHandler = setPanResponder(props.handleNav);
 
     return(
 
@@ -115,6 +148,7 @@ export const PersCard = (props) => {
             containerStyle={{backgroundColor: '#E8AAFF', borderColor:"#A64AC9"}}
             titleStyle={styles.title}
             dividerStyle={{width: 0}}
+            {...gestureHandler.panHandlers}
         >
             
             <ScrollView contentContainerStyle={{alignItems: 'center'}}>
@@ -222,12 +256,17 @@ export const PersCard = (props) => {
 }
 
 export const BookCard = (props) => {
+    
+    const gestureHandler = setPanResponder(props.handleNav);
+    
     return(
-<Card
-            title='Account Settings'
+
+        <Card
+            title='Book preferences'
             containerStyle={{backgroundColor: '#E8AAFF', borderColor:"#A64AC9"}}
             titleStyle={styles.title}
             dividerStyle={{width: 0}}
+            {...gestureHandler.panHandlers}
         >
             
             <ScrollView contentContainerStyle={{alignItems: 'center'}}>
