@@ -6,15 +6,14 @@ import styles from '../shared/stylesheet';
 import { removeBook, addBook } from '../redux/ActionCreators';
 import { baseUrl } from '../shared/baseUrl';
 import AddBookModal from './AddBookModal';
-
+import * as Animatable from 'react-native-animatable';
 
 /* 
     TODO:
     
-        * fix scrolling (bugged because of the gesture handler)
         * Possibly rework navigation structure - Two bars at the top are lame, solution for tabs seems too improvised and transition to no addBookButton is terrible.
         * 03/12 Suggestion: Use button group from react native elements to build a better experience 
-        * Add animations so transitions feel smother
+
 
         
     */
@@ -135,32 +134,33 @@ class BooksComponent extends Component{
 
 
         return (
-            <Card 
-                key={index} 
-                title={item.title}
-                titleStyle={styles.title}
-                containerStyle={{backgroundColor: '#E8AAFF', borderColor:"#A64AC9"}}
-                dividerStyle={{width: 0}}
-            >
-                <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
-                    
-                    <Image source={{uri: baseUrl + item.cover}} style={{width: 110, height: 160}}/>
-                    
-                    <View style={{alignSelf: 'stretch', justifyContent: 'space-around', maxWidth: "50%"}}>
-                        <Text style={{fontWeight: 'bold'}}>Author: {item.author}</Text>
-                        <Text style={{fontWeight: 'bold'}}>Rating: {item.rating}</Text>
-                        <Button 
+            <Animatable.View animation='zoomIn'>
+                <Card 
+                    key={index} 
+                    title={item.title}
+                    titleStyle={styles.title}
+                    containerStyle={{backgroundColor: '#E8AAFF', borderColor:"#A64AC9"}}
+                    dividerStyle={{width: 0}}
+                >
+                    <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
 
-                            onPress={() => {
-                                removeAlert()
-                            }}
-                            title='Remove Book'
-                            color="#d9534f"
-                        />
+                        <Image source={{uri: baseUrl + item.cover}} style={{width: 110, height: 160}}/>
+
+                        <View style={{alignSelf: 'stretch', justifyContent: 'space-around', maxWidth: "50%"}}>
+                            <Text style={{fontWeight: 'bold'}}>Author: {item.author}</Text>
+                            <Text style={{fontWeight: 'bold'}}>Rating: {item.rating}</Text>
+                            <Button 
+
+                                onPress={() => {
+                                    removeAlert()
+                                }}
+                                title='Remove Book'
+                                color="#d9534f"
+                            />
+                        </View>
                     </View>
-                </View>
-            </Card>
-               
+                </Card>
+            </Animatable.View>
         );
     }
 
@@ -182,13 +182,16 @@ class BooksComponent extends Component{
 
                     <LocalHeader toggleModal={this.toggleModal} setList={this.setList} list={this.state.list}/>
                     
-                    <FlatList
-                        data={booklist[this.getList()]}
-                        renderItem={this.renderBooks}
-                        keyExtractor={(book) => book.id.toString()}
-                
-                    />
+                    
+                        <FlatList
+                            data={booklist[this.getList()]}
+                            renderItem={this.renderBooks}
+                            keyExtractor={(book) => book.id.toString()}
+
+                        />
+                    
                 </ScrollView>
+
             );     
         }
         else{

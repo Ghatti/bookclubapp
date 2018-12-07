@@ -82,7 +82,7 @@ const DrawerNav = createDrawerNavigator({
     }
 },
 {
-    initialRouteName: 'Profile',
+    initialRouteName: 'Books',
     drawerBackgroundColor: '#A64AC9',
     contentOptions: {
         activeTintColor: '#fccd04',
